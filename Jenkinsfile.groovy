@@ -4,6 +4,8 @@ node {
       git "git@github.com:daudmu21/flask-examples.git"
     }
     stage("Install Requirements"){
+        sh "ssh ec2-user@${ENV} sudo yum install virtualenv -y"
+        sh "ssh ec2-user@${ENV} sudo yum install pip -y"
         sh "scp -r *  ec2-user@${ENV}:/tmp"
         sh "ssh ec2-user@${ENV} virtualenv /tmp/venv"
         sh "ssh ec2-user@${ENV} ./tmp/ven/activate"
